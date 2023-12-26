@@ -5,7 +5,9 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 require('dotenv').config();
 
+// routes files
 const login = require('./routes/login/signin');
+
 
 function main(){
   const app = express();
@@ -19,16 +21,19 @@ function main(){
   module.exports = app;
 }
 
+
 function setViewEngine(app){
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'ejs');
 }
+
 
 function setLocals(app){
   app.use(function(req, res, next) {
     next();
   })
 }
+
 
 function setMiddlewares(app){
   app.use(logger('dev'));
@@ -38,9 +43,11 @@ function setMiddlewares(app){
   app.use(express.static(path.join(__dirname, 'public')));
 }
 
+
 function setRoutes(app){
   app.use('/login/signin', login);
 }
+
 
 function errorHandler(app){
   // catch 404 and forward to error handler
