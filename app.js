@@ -3,14 +3,16 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
 // routes files
 const login = require('./routes/login/signin');
 
-
 function main(){
   const app = express();
+
+  connectMongoose().catch(err => console.log(err));
 
   setViewEngine(app);
   setLocals(app);
@@ -21,6 +23,9 @@ function main(){
   module.exports = app;
 }
 
+async function connectMongoose() {
+  await mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+}
 
 function setViewEngine(app){
   app.set('views', path.join(__dirname, 'views'));
