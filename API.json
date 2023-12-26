@@ -1,15 +1,17 @@
 {
-    "/login/signin": {
-        "query": {
-            "user_name": {
-                "type": "string",
-                "required": "true"
-            },
-            "password": {
-                "type": "string",
-                "required": "true"
+    "GET": {
+        "/login/signin": {
+            "query": {
+                "user_name": {
+                    "type": "string",
+                    "required": "true"
+                },
+                "password": {
+                    "type": "string",
+                    "required": "true"
+                }
             }
-        },
-        "type": "GET"
+        }
     }
+
 }
